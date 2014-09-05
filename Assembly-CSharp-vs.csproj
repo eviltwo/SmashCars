@@ -46,10 +46,12 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\BillboardController.cs" />
      <Compile Include="Assets\Scripts\BombEffect.cs" />
      <Compile Include="Assets\Scripts\BombQuad.cs" />
      <Compile Include="Assets\Scripts\BombWind.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
+     <Compile Include="Assets\Scripts\CameraManager.cs" />
      <Compile Include="Assets\Scripts\CarController.cs" />
      <Compile Include="Assets\Scripts\CarInput_AI.cs" />
      <Compile Include="Assets\Scripts\CarInput_RandomAI.cs" />

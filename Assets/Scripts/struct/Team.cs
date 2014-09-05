@@ -9,5 +9,6 @@ public struct Team {
 	public bool isBossUser;
 	public bool isCamera;
 	public int InputNumber;
+	public string BossName;
 	public GameObject[] TeamPlayers;
 }

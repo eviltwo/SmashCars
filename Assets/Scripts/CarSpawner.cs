@@ -9,6 +9,7 @@ public class CarSpawner : MonoBehaviour {
 	public Vector3 RandomSize;
 	public bool RandomRotY;
 
+	int CameraValue;
 	// Use this for initialization
 	void Start () {
 		spawnAllCar ();
@@ -28,22 +29,31 @@ public class CarSpawner : MonoBehaviour {
 
 	void spawnAllCar(){
 		Team[] teams = PlayerManager.Instance.getTeamData ();
+		// カメラの数を確認
+		CameraValue = 0;
+		for (int it = 0; it < teams.Length; it++) {
+			Team t = teams [it];
+			if (t.isCamera) {
+				CameraValue++;
+			}
+		}
+		// 車生成
 		for (int it = 0; it < teams.Length; it++) {
 			Team t = teams [it];
 			// ボスを生成
 			if (t.isBossUser) {
-				spawnCar (t, 0);	// ユーザー車を生成
+				spawnCar (t, 0, true);	// ユーザー車を生成
 			} else {
-				spawnCar (t, 1);	// AI車を生成
+				spawnCar (t, 1, true);	// AI車を生成
 			}
 			// ザコを生成
 			for (int jn = 1; jn < teams[it].PlayerValue; jn++) {
-				spawnCar (t, 1);
+				spawnCar (t, 1, false);
 			}
 		}
 	}
 
-	void spawnCar(Team team, int ctrl){
+	void spawnCar(Team team, int ctrl, bool boss){
 		GameObject obj = (GameObject)Instantiate (CarPrefab);
 		Vector3 pos = CenterPos;
 		for (int i = 0; i < 3; i++) {
@@ -63,8 +73,6 @@ public class CarSpawner : MonoBehaviour {
 		case 0:
 			// ユーザー
 			obj.GetComponent<CarInput_User> ().enabled = true;
-			GameObject cam = (GameObject)Instantiate (CarCameraPrefab);
-			cam.GetComponent<CameraController> ().TargetObject = obj;
 			break;
 		case 1:
 			// AI
@@ -75,5 +83,41 @@ public class CarSpawner : MonoBehaviour {
 			break;
 		}
 
+		// カメラをつける
+		if (boss && team.isCamera) {
+			GameObject cam = (GameObject)Instantiate (CarCameraPrefab);
+			cam.GetComponent<CameraController> ().TargetObject = obj;
+			setCameraPos (cam, team.TeamNumber);
+		}
+
+	}
+
+	void setCameraPos(GameObject cam, int teamnum){
+		Rect rect;
+		switch (CameraValue) {
+		case 1:
+			rect = new Rect (0,0,1,1);
+			cam.camera.rect = rect;
+			break;
+		case 2:
+			rect = new Rect ();
+			rect.width = 1;
+			rect.height = 0.5f;
+			rect.x = 0f;
+			rect.y = 0.5f - 0.5f * teamnum;
+			cam.camera.rect = rect;
+			break;
+		case 3:
+		case 4:
+			rect = new Rect ();
+			rect.width = 0.5f;
+			rect.height = 0.5f;
+			rect.x = 0.5f * (teamnum % 2);
+			rect.y = 0.5f - 0.5f * (teamnum/2);
+			cam.camera.rect = rect;
+			break;
+		default:
+			break;
+		}
 	}
 }

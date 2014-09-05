@@ -34,7 +34,7 @@ public class ItemController : MonoBehaviour {
 		}*/
 
 		enemychecktime += Time.deltaTime;
-		if (enemychecktime >= EnemyCheckTimeMax && HaveItem) {
+		if (enemychecktime >= EnemyCheckTimeMax) {
 			enemychecktime = 0;
 			searchEnemy ();
 		}

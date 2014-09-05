@@ -40,6 +40,7 @@ public class BillboardController : MonoBehaviour {
 			int layer = LayerMask.NameToLayer ("UI_" + Value);
 			setChildLayer (board, layer);
 			SendMessage ("addBillboard", board);
+			SendMessage ("addBillboardNum", Value);
 		}
 		Billboards.Add (board);
 	}

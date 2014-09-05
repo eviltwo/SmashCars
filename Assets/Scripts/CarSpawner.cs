@@ -56,6 +56,8 @@ public class CarSpawner : MonoBehaviour {
 		PlayerManager.Instance.addTeamPlayer (team.TeamNumber, obj);
 		// チームを伝える
 		obj.GetComponent<CarController> ().TeamNum = team.TeamNumber;
+		// 操作番号を伝える
+		obj.GetComponent<CarController> ().InputNum = team.InputNumber;
 		// CarInputコンポーネントの選択
 		switch (ctrl) {
 		case 0:

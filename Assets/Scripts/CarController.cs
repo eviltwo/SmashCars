@@ -14,6 +14,7 @@ public class CarController : MonoBehaviour {
 	public bool IsFlying = false;
 	public int TeamNum;
 	public GameObject[] ChangeColorParts;
+	public int InputNum = 0;
 
 	int SpeedLogMax = 5;
 	float[] SpeedLog;

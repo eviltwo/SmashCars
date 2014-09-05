@@ -7,5 +7,6 @@ public struct Team {
 	public Color TeamColor;
 	public int PlayerValue;
 	public bool isBossUser;
+	public int InputNumber;
 	public GameObject[] TeamPlayers;
 }

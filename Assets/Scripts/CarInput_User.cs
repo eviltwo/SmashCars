@@ -15,8 +15,9 @@ public class CarInput_User : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		dirinput.x = Input.GetAxis ("Horizontal");
-		dirinput.y = Input.GetAxis ("Vertical");
+		int InputNum = cController.InputNum;
+		dirinput.x = Input.GetAxis ("Horizontal_"+InputNum);
+		dirinput.y = Input.GetAxis ("Vertical_"+InputNum);
 		cController.setInput (dirinput);
 
 		if (dirinput.y > 0) {

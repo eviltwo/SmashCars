@@ -15,6 +15,7 @@ public class CarController : MonoBehaviour {
 	public int TeamNum;
 	public GameObject[] ChangeColorParts;
 	public int InputNum = 0;
+	public bool IsBoss = false;
 
 	int SpeedLogMax = 5;
 	float[] SpeedLog;

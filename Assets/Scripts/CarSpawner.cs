@@ -8,6 +8,7 @@ public class CarSpawner : MonoBehaviour {
 	public Vector3 CenterPos;
 	public Vector3 RandomSize;
 	public bool RandomRotY;
+	public GameObject NameBillboardPrefab;
 
 	int CameraValue;
 	// Use this for initialization
@@ -70,6 +71,7 @@ public class CarSpawner : MonoBehaviour {
 		obj.GetComponent<CarController> ().TeamNum = team.TeamNumber;
 		// 操作番号を伝える
 		obj.GetComponent<CarController> ().InputNum = team.InputNumber;
+		obj.GetComponent<CarController> ().IsBoss = boss;
 		// CarInputコンポーネントの選択
 		switch (ctrl) {
 		case 0:
@@ -93,6 +95,12 @@ public class CarSpawner : MonoBehaviour {
 			CameraManager.Instance.addCamera (cam, team.TeamNumber);		// カメラ登録
 			cam.camera.cullingMask += 1 << LayerMask.NameToLayer("UI_"+team.TeamNumber);
 		}
+
+		// ビルボード生成
+		GameObject billboard = (GameObject)Instantiate (NameBillboardPrefab);
+		billboard.SendMessage ("SetCar", obj);
+		billboard.GetComponent<BillboardController> ().MyNumber = team.TeamNumber;
+		billboard.GetComponent<BillboardController> ().IsBoss = boss;
 
 	}
 

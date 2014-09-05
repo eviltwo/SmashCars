@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\BillboardController.cs" />
+     <Compile Include="Assets\Scripts\Billboard_SetName.cs" />
      <Compile Include="Assets\Scripts\BombEffect.cs" />
      <Compile Include="Assets\Scripts\BombQuad.cs" />
      <Compile Include="Assets\Scripts\BombWind.cs" />

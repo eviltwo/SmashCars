@@ -3,6 +3,10 @@ using System.Collections;
 
 public class BillboardController : MonoBehaviour {
 	public GameObject Prefab;
+	public int MyNumber = -1;
+	public bool IsBoss = false;
+	public bool DisibleMyView = true;	// 自分のカメラに対して消すかどうか
+	public float Height = 1.0f;
 
 	int Value = 0;
 	ArrayList Billboards = new ArrayList();
@@ -10,6 +14,7 @@ public class BillboardController : MonoBehaviour {
 	void Update () {
 		// カメラが増えたならビルボード追加
 		while (Value < CameraManager.Instance.getCameraValue ()) {
+		
 			createBillboard ();
 			Value++;
 		}
@@ -18,19 +23,25 @@ public class BillboardController : MonoBehaviour {
 		for (int i = 0; i < Value; i++) {
 			GameObject cam = CameraManager.Instance.getCamera (i);
 			GameObject board = (GameObject)Billboards [i];
-			if (cam) {
+			if (cam && board) {
 				board.transform.LookAt (cam.transform);
 			}
 		}
 	}
 
 	void createBillboard(){
-		GameObject board = (GameObject)Instantiate (Prefab);
-		board.transform.parent = transform;
-		board.transform.localPosition = Vector3.zero;
+		GameObject board;
+		if (DisibleMyView && MyNumber == Value && IsBoss) {
+			board = null;
+		} else {
+			board = (GameObject)Instantiate (Prefab);
+			board.transform.parent = transform;
+			board.transform.localPosition = new Vector3(0,Height,0);
+			int layer = LayerMask.NameToLayer ("UI_" + Value);
+			setChildLayer (board, layer);
+			SendMessage ("addBillboard", board);
+		}
 		Billboards.Add (board);
-		int layer = LayerMask.NameToLayer ("UI_" + (Billboards.Count - 1));
-		setChildLayer (board, layer);
 	}
 
 	// 全ての子のレイヤーを変更

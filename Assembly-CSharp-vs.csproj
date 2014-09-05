@@ -73,6 +73,7 @@
      <Compile Include="Assets\Scripts\ViewFPS.cs" />
      <Compile Include="Assets\Scripts\struct\HitWall.cs" />
      <Compile Include="Assets\Scripts\struct\Team.cs" />
+     <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

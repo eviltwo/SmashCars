@@ -90,7 +90,7 @@ public class CarSpawner : MonoBehaviour {
 		// カメラをつける
 		if (boss && team.isCamera) {
 			GameObject cam = (GameObject)Instantiate (CarCameraPrefab);
-			cam.GetComponent<CameraController> ().TargetObject = obj;
+			cam.GetComponent<CameraTargetController> ().TeamNum = team.TeamNumber;
 			setCameraPos (cam, team.TeamNumber);
 			CameraManager.Instance.addCamera (cam, team.TeamNumber);		// カメラ登録
 			cam.camera.cullingMask += 1 << LayerMask.NameToLayer("UI_"+team.TeamNumber);

@@ -53,6 +53,7 @@
      <Compile Include="Assets\Scripts\BombWind.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\CameraManager.cs" />
+     <Compile Include="Assets\Scripts\CameraTargetController.cs" />
      <Compile Include="Assets\Scripts\CarController.cs" />
      <Compile Include="Assets\Scripts\CarInput_AI.cs" />
      <Compile Include="Assets\Scripts\CarInput_RandomAI.cs" />

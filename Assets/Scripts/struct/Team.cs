@@ -6,6 +6,7 @@ public struct Team {
 	public int TeamNumber;
 	public Color TeamColor;
 	public int PlayerValue;
+	public int BossNumber;
 	public bool isBossUser;
 	public bool isCamera;
 	public int InputNumber;

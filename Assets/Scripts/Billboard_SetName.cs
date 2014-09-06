@@ -17,17 +17,13 @@ public class Billboard_SetName : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		transform.position = CarObj.transform.position;
-		/*for (int j = 0; j < BillboardList.Count; j++) {
-			GameObject board = (GameObject)BillboardList [j];
-			GameObject text = board.transform.FindChild ("Name").gameObject;
-			GameObject icon = board.transform.FindChild ("Icon").gameObject;
-			text.SetActive (false);
-			icon.SetActive (false);
-		}*/
+
+		// 表示するか判定
 		for (int i = 0; i < BillboardList.Count; i++) {
 			GameObject board = (GameObject)BillboardList [i];
 			int num = (int)BillboardNumList [i];
-			GameObject car = PlayerManager.Instance.getTeamData () [num].TeamPlayers [0];
+			int boss = PlayerManager.Instance.getTeamData () [num].BossNumber;
+			GameObject car = PlayerManager.Instance.getTeamData () [num].TeamPlayers [boss];
 			if (car) {
 				ItemController iController = car.GetComponent<ItemController> ();
 				GameObject[] enemies = iController.getFindEnemy ();

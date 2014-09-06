@@ -3,11 +3,11 @@ using System.Collections;
 
 public class PutCameraController : MonoBehaviour {
 
-	public GameObject Target;
 	public float MoveDist = 30.0f;
 	public float ForwardMlt = 3.0f;
 	public Vector3 RandomSize = new Vector3 (3,3,3);
 
+	GameObject TargetObject;
 	float MoveTimeMax = 1f;
 	int CameraMode = 0;
 	Vector3 NewPos = new Vector3 ();
@@ -17,15 +17,22 @@ public class PutCameraController : MonoBehaviour {
 	float rotdist = 1;
 	float rottime = 0;
 	CarController cController;
+	CameraTargetController ctController;
 	// Use this for initialization
 	void Start () {
-		cController = Target.GetComponent<CarController> ();
-		OldPos = Target.transform.position;
+		cController = TargetObject.GetComponent<CarController> ();
+		ctController = GetComponent<CameraTargetController> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		NewPos = Target.transform.position;
+		// ターゲット確認
+		if (TargetObject != ctController.getTarget ()) {
+			TargetObject = ctController.getTarget ();
+			cController = TargetObject.GetComponent<CarController> ();
+		}
+
+		NewPos = TargetObject.transform.position;
 
 		checkTime ();
 		Move ();
@@ -70,7 +77,7 @@ public class PutCameraController : MonoBehaviour {
 		transform.position = basepos;
 	}
 	void randomMove(){
-		transform.LookAt (Target.transform.position);
+		transform.LookAt (TargetObject.transform.position);
 	}
 
 	void rotMoveStart(){
@@ -79,11 +86,11 @@ public class PutCameraController : MonoBehaviour {
 		rottime = Random.Range (0f, 360f);
 	}
 	void rotMove(){
-		transform.position = Target.transform.position;
+		transform.position = TargetObject.transform.position;
 		transform.localEulerAngles = new Vector3 (0,rottime,0);
 		transform.position += -transform.forward * rotdist;
 		transform.position += transform.up * rotheight;
-		transform.LookAt (Target.transform.position);
+		transform.LookAt (TargetObject.transform.position);
 
 		rottime += 15f * Time.deltaTime;
 		if (rottime >= 360) {

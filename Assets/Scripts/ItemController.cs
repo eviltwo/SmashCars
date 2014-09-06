@@ -95,12 +95,14 @@ public class ItemController : MonoBehaviour {
 			if (team.TeamNumber != myteam) {
 				for (int j = 0; j < team.PlayerValue; j++) {
 					GameObject enemy = team.TeamPlayers [j];
-					Vector3 myvec = cController.getForward ();
-					Vector3 envec = (enemy.transform.position - transform.position);
-					envec = envec / envec.magnitude;
-					float angle = Vector3.Angle (myvec, envec);
-					if (angle < OutEyeAngle) {
-						find.Add (enemy);
+					if (enemy) {
+						Vector3 myvec = cController.getForward ();
+						Vector3 envec = (enemy.transform.position - transform.position);
+						envec = envec / envec.magnitude;
+						float angle = Vector3.Angle (myvec, envec);
+						if (angle < OutEyeAngle) {
+							find.Add (enemy);
+						}
 					}
 				}
 			}

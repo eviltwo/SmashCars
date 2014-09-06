@@ -45,6 +45,7 @@
 'Assets/Scripts/BombWind.cs'
 'Assets/Scripts/CameraController.cs'
 'Assets/Scripts/CameraManager.cs'
+'Assets/Scripts/CameraTargetController.cs'
 'Assets/Scripts/CarController.cs'
 'Assets/Scripts/CarInput_AI.cs'
 'Assets/Scripts/CarInput_RandomAI.cs'

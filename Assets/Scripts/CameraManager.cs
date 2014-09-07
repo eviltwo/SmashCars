@@ -4,6 +4,8 @@ using System.Collections;
 // チームごとのカメラを管理
 public class CameraManager : SingletonMonoBehaviour<CameraManager> {
 
+	public int ScreenValue = 0;
+
 	GameObject[] CameraList = new GameObject[0];
 
 	public void setCameraValue(int value){

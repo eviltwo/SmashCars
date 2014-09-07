@@ -38,6 +38,7 @@ public class CarSpawner : MonoBehaviour {
 				CameraValue++;
 			}
 		}
+		CameraManager.Instance.ScreenValue = CameraValue;
 		if (CameraValue == 3) {
 			CameraValue = 4;
 		}

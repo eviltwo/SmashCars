@@ -14,6 +14,7 @@ public class ItemController : MonoBehaviour {
 	bool HaveItem = false;
 	int ItemType = 0;
 	int time = 0;
+	int ItemLevel = 0;
 	GameObject[] Enemy = new GameObject[0];
 	GameObject FindItemBox;
 	float enemychecktime = 0;
@@ -40,20 +41,21 @@ public class ItemController : MonoBehaviour {
 		}
 
 		itemchecktime += Time.deltaTime;
-		if (!HaveItem) {
-			if (itemchecktime >= ItemCheckTimeMax) {
+		//if (!HaveItem) {
+		if (itemchecktime >= ItemCheckTimeMax) {
 				itemchecktime = 0;
 				searchItemBox ();
-			}
-		} else {
-			FindItemBox = null;
 		}
+		/*} else {
+			FindItemBox = null;
+		}*/
 
 	}
 
 	// アイテム追加
 	void getItem(){
 		HaveItem = true;
+		ItemLevel++;
 		ItemType = 0;
 	}
 
@@ -78,11 +80,17 @@ public class ItemController : MonoBehaviour {
 	// アイテム使用済み
 	void deleteItem(){
 		HaveItem = false;
+		ItemLevel = 0;
 	}
 
 	// アイテムを持っているか
 	public bool getHaveItem(){
 		return HaveItem;
+	}
+
+	// アイテムのレベル
+	public int getItemLevel(){
+		return ItemLevel;
 	}
 
 	public int getItemType(){

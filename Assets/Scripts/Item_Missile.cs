@@ -5,7 +5,9 @@ public class Item_Missile : MonoBehaviour {
 
 	public GameObject MissilePrefab;
 	public int Value = 5;
+	public int PlusValue = 1;
 	public float Dist = 5.0f;
+	public float MinusDist = 0.1f;
 	public float JustShotangle = 10.0f;
 	public float JustShotDist = 80.0f;
 
@@ -35,20 +37,24 @@ public class Item_Missile : MonoBehaviour {
 
 	// アイテムボタンが押されている
 	void Use(){
-		// アイテムを使用済みにする
-		transform.parent.SendMessage ("deleteItem", SendMessageOptions.DontRequireReceiver);
 		// 発射
 		spawnMissile ();
+
+		// アイテムを使用済みにする
+		transform.parent.SendMessage ("deleteItem", SendMessageOptions.DontRequireReceiver);
 	}
 
 	// ミサイル生成
 	void spawnMissile(){
-		for (int i = 0; i < Value; i++) {
+		int level = iController.getItemLevel ()-1;
+		int missilevalue = Value + PlusValue * level;
+		float dist = Dist - MinusDist * level;
+		for (int i = 0; i < missilevalue; i++) {
 			GameObject missile = (GameObject)Instantiate (MissilePrefab);
 			missile.transform.position = CarObj.transform.position;
 			missile.transform.LookAt (missile.transform.position + cController.getForward());
-			float basepos = i * Dist;
-			float pos = -Dist * (Value-1) / 2 + basepos;
+			float basepos = i * dist;
+			float pos = -dist * (Value-1) / 2 + basepos;
 			missile.transform.Rotate (0,pos,0);
 			missile.transform.position += missile.transform.forward*1.5f;
 			missile.SendMessage ("StartSet", TeamNum);

@@ -48,7 +48,6 @@ public class CountDownController : MonoBehaviour {
 						float mlt = rect.height / rect.width;
 						Vector3 scl = OriginScale;
 						scl.x *= mlt;
-						Debug.Log (i+":"+rect);
 						Counts [i].transform.localScale = scl;
 					}
 				}

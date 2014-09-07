@@ -38,6 +38,9 @@ public class CarSpawner : MonoBehaviour {
 				CameraValue++;
 			}
 		}
+		if (CameraValue == 3) {
+			CameraValue = 4;
+		}
 		CameraManager.Instance.setCameraValue (teams.Length);	// チーム数を登録
 
 		// 車生成
@@ -96,10 +99,12 @@ public class CarSpawner : MonoBehaviour {
 				CameraManager.Instance.addCamera (cam, team.TeamNumber);		// カメラ登録
 				cam.camera.cullingMask += 1 << LayerMask.NameToLayer ("UI_" + team.TeamNumber);
 			} else {
-				GameObject cam = (GameObject)Instantiate (CarCameraPrefab);
-				cam.GetComponent<CameraTargetController> ().TeamNum = -1;
-				setCameraPos (cam, team.TeamNumber);
-				CameraManager.Instance.addCamera (cam, team.TeamNumber);		// カメラ登録
+				if (team.TeamNumber < CameraValue) {
+					GameObject cam = (GameObject)Instantiate (CarCameraPrefab);
+					cam.GetComponent<CameraTargetController> ().TeamNum = -1;
+					setCameraPos (cam, team.TeamNumber);
+					CameraManager.Instance.addCamera (cam, team.TeamNumber);		// カメラ登録
+				}
 			}
 		}
 

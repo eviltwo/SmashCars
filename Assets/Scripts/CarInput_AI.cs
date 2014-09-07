@@ -226,7 +226,7 @@ public class CarInput_AI : MonoBehaviour {
 
 	// 敵が攻撃範囲内に居ると呼ばれる
 	void justEnemy(){
-		if (iController) {
+		if (iController && this.enabled) {
 			iController.useItem ();
 		}
 	}

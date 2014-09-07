@@ -7,6 +7,7 @@ public class PutCameraController : MonoBehaviour {
 	public float ForwardMlt = 3.0f;
 	public Vector3 RandomSize = new Vector3 (3,3,3);
 
+	int NowTeam = -1;
 	GameObject TargetObject;
 	float MoveTimeMax = 1f;
 	int CameraMode = 0;
@@ -20,19 +21,26 @@ public class PutCameraController : MonoBehaviour {
 	CameraTargetController ctController;
 	// Use this for initialization
 	void Start () {
-		cController = TargetObject.GetComponent<CarController> ();
+		//cController = TargetObject.GetComponent<CarController> ();
 		ctController = GetComponent<CameraTargetController> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		// ターゲット確認
-		if (TargetObject != ctController.getTarget ()) {
-			TargetObject = ctController.getTarget ();
-			cController = TargetObject.GetComponent<CarController> ();
+		// チーム確認
+		ctController = GetComponent<CameraTargetController> ();
+		if (NowTeam != ctController.getTeamNum ()) {
+			NowTeam = ctController.getTeamNum ();
+			if (NowTeam >= 0) {
+				setTeamTarget ();
+			} else {
+				CameraMode = 2;
+			}
 		}
 
-		NewPos = TargetObject.transform.position;
+		if (TargetObject) {
+			NewPos = TargetObject.transform.position;
+		}
 
 		checkTime ();
 		Move ();
@@ -43,16 +51,40 @@ public class PutCameraController : MonoBehaviour {
 	void checkTime(){
 		float dist = Vector3.Distance (transform.position, NewPos);
 		movetime += Time.deltaTime;
-		if (movetime >= MoveTimeMax || movetime/MoveTimeMax > 0.5f && cController.IsFlying || dist > MoveDist) {
+		if (movetime >= MoveTimeMax || cController && movetime/MoveTimeMax > 0.8f && cController.IsFlying || dist > MoveDist) {
 			movetime = 0;
-			if (cController.IsFlying) {
-				CameraMode = 0;
-				randomMoveStart ();
+			if (NowTeam >= 0) {
+				if (cController.IsFlying) {
+					CameraMode = 0;
+					randomMoveStart ();
+				} else {
+					CameraMode = 1;
+					rotMoveStart ();
+					// ターゲット決め
+					setTeamTarget ();
+				}
 			} else {
-				CameraMode = 1;
-				rotMoveStart ();
+				CameraMode = 2;
 			}
 			MoveTimeMax = Random.Range (3f, 5f);
+		}
+	}
+
+	// チームの誰かをターゲットにする
+	void setTeamTarget(){
+		int playervalue = PlayerManager.Instance.getTeamData () [NowTeam].PlayerValue;
+		int ran = Random.Range (0, playervalue);
+		GameObject[] players = PlayerManager.Instance.getTeamData () [NowTeam].TeamPlayers;
+		int nowplayer = 0;
+		for (int i = 0; i < players.Length; i++) {
+			if (players [i]) {
+				if (nowplayer == ran) {
+					TargetObject = players [i];
+					cController = TargetObject.GetComponent<CarController> ();
+					break;
+				}
+				nowplayer++;
+			}
 		}
 	}
 

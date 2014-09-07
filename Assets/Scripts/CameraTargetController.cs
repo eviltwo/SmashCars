@@ -15,7 +15,6 @@ public class CameraTargetController : MonoBehaviour {
 	void Update () {
 		int bossnum = PlayerManager.Instance.getTeamData () [TeamNum].BossNumber;
 		if (bossnum < 0) {
-			Target = PlayerManager.Instance.getTeamData () [TeamNum].TeamPlayers [1];
 			GetComponent<CameraController> ().enabled = false;
 			GetComponent<PutCameraController> ().enabled = true;
 		} else {
@@ -27,5 +26,9 @@ public class CameraTargetController : MonoBehaviour {
 
 	public GameObject getTarget(){
 		return Target;
+	}
+
+	public int getTeamNum(){
+		return TeamNum;
 	}
 }

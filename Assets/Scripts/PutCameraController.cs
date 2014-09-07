@@ -7,7 +7,7 @@ public class PutCameraController : MonoBehaviour {
 	public float ForwardMlt = 3.0f;
 	public Vector3 RandomSize = new Vector3 (3,3,3);
 
-	int NowTeam = -1;
+	int NowTeam = -2;
 	GameObject TargetObject;
 	float MoveTimeMax = 1f;
 	int CameraMode = 0;
@@ -17,6 +17,7 @@ public class PutCameraController : MonoBehaviour {
 	float rotheight = 0;
 	float rotdist = 1;
 	float rottime = 0;
+	float fieldrot = 0;
 	CarController cController;
 	CameraTargetController ctController;
 	// Use this for initialization
@@ -65,6 +66,7 @@ public class PutCameraController : MonoBehaviour {
 				}
 			} else {
 				CameraMode = 2;
+				fieldMoveStart ();
 			}
 			MoveTimeMax = Random.Range (3f, 5f);
 		}
@@ -96,11 +98,15 @@ public class PutCameraController : MonoBehaviour {
 		case 1:
 			rotMove ();
 			break;
+		case 2:
+			fieldMove ();
+			break;
 		default:
 			break;
 		}
 	}
 
+	// ターゲットの先で待ち伏せて撮る
 	void randomMoveStart(){
 		Vector3 basepos = OldPos + (NewPos - OldPos) * ForwardMlt;
 		basepos.x += Random.Range (-RandomSize.x, RandomSize.y);
@@ -112,6 +118,7 @@ public class PutCameraController : MonoBehaviour {
 		transform.LookAt (TargetObject.transform.position);
 	}
 
+	// ターゲット中心に回転して撮る
 	void rotMoveStart(){
 		rotdist = Random.Range (2f, 10f);
 		rotheight = Random.Range (0f, 3f);
@@ -132,4 +139,22 @@ public class PutCameraController : MonoBehaviour {
 		}
 	}
 
+	// フィールドを撮る
+	void fieldMoveStart(){
+
+	}
+	void fieldMove(){
+		transform.position = Vector3.zero;
+		transform.localEulerAngles = new Vector3 (0,fieldrot,0);
+		transform.position += -transform.forward * 50;
+		transform.position += transform.up * 10;
+		transform.LookAt (Vector3.zero);
+
+		fieldrot += 5f * Time.deltaTime;
+		if (fieldrot >= 360) {
+			fieldrot -= 360;
+		} else if (fieldrot < 0) {
+			fieldrot += 360;
+		}
+	}
 }

@@ -72,6 +72,7 @@
      <Compile Include="Assets\Scripts\SingletonMonoBehaviour.cs" />
      <Compile Include="Assets\Scripts\TestForward.cs" />
      <Compile Include="Assets\Scripts\ViewFPS.cs" />
+     <Compile Include="Assets\Scripts\WaitManager.cs" />
      <Compile Include="Assets\Scripts\struct\HitWall.cs" />
      <Compile Include="Assets\Scripts\struct\Team.cs" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />

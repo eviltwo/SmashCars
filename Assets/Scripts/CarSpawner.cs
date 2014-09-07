@@ -88,12 +88,19 @@ public class CarSpawner : MonoBehaviour {
 		}
 
 		// カメラをつける
-		if (boss && team.isCamera) {
-			GameObject cam = (GameObject)Instantiate (CarCameraPrefab);
-			cam.GetComponent<CameraTargetController> ().TeamNum = team.TeamNumber;
-			setCameraPos (cam, team.TeamNumber);
-			CameraManager.Instance.addCamera (cam, team.TeamNumber);		// カメラ登録
-			cam.camera.cullingMask += 1 << LayerMask.NameToLayer("UI_"+team.TeamNumber);
+		if (boss) {
+			if (team.isCamera) {
+				GameObject cam = (GameObject)Instantiate (CarCameraPrefab);
+				cam.GetComponent<CameraTargetController> ().TeamNum = team.TeamNumber;
+				setCameraPos (cam, team.TeamNumber);
+				CameraManager.Instance.addCamera (cam, team.TeamNumber);		// カメラ登録
+				cam.camera.cullingMask += 1 << LayerMask.NameToLayer ("UI_" + team.TeamNumber);
+			} else {
+				GameObject cam = (GameObject)Instantiate (CarCameraPrefab);
+				cam.GetComponent<CameraTargetController> ().TeamNum = -1;
+				setCameraPos (cam, team.TeamNumber);
+				CameraManager.Instance.addCamera (cam, team.TeamNumber);		// カメラ登録
+			}
 		}
 
 		// ビルボード生成

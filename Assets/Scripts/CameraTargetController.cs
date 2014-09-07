@@ -13,14 +13,19 @@ public class CameraTargetController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		int bossnum = PlayerManager.Instance.getTeamData () [TeamNum].BossNumber;
-		if (bossnum < 0) {
+		if (TeamNum >= 0) {
+			int bossnum = PlayerManager.Instance.getTeamData () [TeamNum].BossNumber;
+			if (bossnum < 0) {
+				GetComponent<CameraController> ().enabled = false;
+				GetComponent<PutCameraController> ().enabled = true;
+			} else {
+				Target = PlayerManager.Instance.getTeamData () [TeamNum].TeamPlayers [bossnum];
+				GetComponent<CameraController> ().enabled = true;
+				GetComponent<PutCameraController> ().enabled = false;
+			}
+		} else {
 			GetComponent<CameraController> ().enabled = false;
 			GetComponent<PutCameraController> ().enabled = true;
-		} else {
-			Target = PlayerManager.Instance.getTeamData () [TeamNum].TeamPlayers [bossnum];
-			GetComponent<CameraController> ().enabled = true;
-			GetComponent<PutCameraController> ().enabled = false;
 		}
 	}
 

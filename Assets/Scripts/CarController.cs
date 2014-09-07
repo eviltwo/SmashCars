@@ -83,6 +83,9 @@ public class CarController : MonoBehaviour {
 		// アクセル
 		//float motorpow = MotorPowerMax * dirinput [1];
 		float motorpow = MotorPowerMax * 1;
+		if (!WaitManager.Instance.IsGameStart) {
+			motorpow = 5f;
+		}
 		if (dirinput [1] >= 0) {
 			if (KmParHour > SpeedMax) {
 				motorpow = 0;
@@ -112,6 +115,9 @@ public class CarController : MonoBehaviour {
 		// ハンドル
 		float handmlt = Mathf.Max(0.05f, 1-VecSpeed / 64.0f);
 		float stangle = HandleAngleMax * dirinput [0]*handmlt;
+		if (!WaitManager.Instance.IsGameStart) {
+			stangle = 0f;
+		}
 		wCollider [0].steerAngle = stangle;
 		wCollider [1].steerAngle = stangle;
 
@@ -200,7 +206,7 @@ public class CarController : MonoBehaviour {
 
 	// 壁等に衝突して止まっているかどうか
 	void checkStop(){
-		if (KmParHour < 4) {
+		if (KmParHour < 4 && WaitManager.Instance.IsGameStart) {
 			stoptime += Time.deltaTime;
 			IsStop = true;
 			if (stoptime > 1) {

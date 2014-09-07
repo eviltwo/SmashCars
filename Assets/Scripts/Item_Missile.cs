@@ -54,7 +54,7 @@ public class Item_Missile : MonoBehaviour {
 			missile.transform.position = CarObj.transform.position;
 			missile.transform.LookAt (missile.transform.position + cController.getForward());
 			float basepos = i * dist;
-			float pos = -dist * (Value-1) / 2 + basepos;
+			float pos = -dist * (missilevalue-1) / 2 + basepos;
 			missile.transform.Rotate (0,pos,0);
 			missile.transform.position += missile.transform.forward*1.5f;
 			missile.SendMessage ("StartSet", TeamNum);

@@ -5,6 +5,7 @@ public class CountDownController : MonoBehaviour {
 	public GameObject NumberPrefab;
 
 	GameObject[] Counts;
+	Vector3 OriginScale;
 	// Use this for initialization
 	void Start () {
 		createCount ();
@@ -25,6 +26,7 @@ public class CountDownController : MonoBehaviour {
 			count.layer = LayerMask.NameToLayer ("UI_" + i);
 			count.SetActive (false);
 			Counts [i] = count;
+			OriginScale = count.transform.localScale;
 		}
 	}
 
@@ -38,6 +40,17 @@ public class CountDownController : MonoBehaviour {
 					int value = Mathf.CeilToInt (count);
 					Counts [i].guiText.text = value.ToString ();
 					active = true;
+
+					// サイズ
+					GameObject cam = CameraManager.Instance.getCamera (i);
+					if (cam) {
+						Rect rect = cam.camera.rect;
+						float mlt = rect.height / rect.width;
+						Vector3 scl = OriginScale;
+						scl.x *= mlt;
+						Debug.Log (i+":"+rect);
+						Counts [i].transform.localScale = scl;
+					}
 				}
 			}
 			Counts [i].SetActive (active);

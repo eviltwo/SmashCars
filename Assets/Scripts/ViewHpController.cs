@@ -5,6 +5,7 @@ public class ViewHpController : MonoBehaviour {
 	public GameObject NumberPrefab;
 
 	GameObject[] Counts;
+	Vector3 OriginScale;
 	// Use this for initialization
 	void Start () {
 		createCount ();
@@ -26,6 +27,7 @@ public class ViewHpController : MonoBehaviour {
 			count.SetActive (false);
 			count.guiText.color = PlayerManager.Instance.getTeamData () [i].TeamColor;
 			Counts [i] = count;
+			OriginScale = count.transform.localScale;
 		}
 	}
 
@@ -41,6 +43,17 @@ public class ViewHpController : MonoBehaviour {
 					int value = Mathf.CeilToInt (hp);
 					Counts [i].guiText.text = value.ToString ();
 					active = true;
+
+					// サイズ
+					GameObject cam = CameraManager.Instance.getCamera (i);
+					if (cam) {
+						Rect rect = cam.camera.rect;
+						float mlt = rect.height / rect.width;
+						Vector3 scl = OriginScale;
+						scl.x *= mlt;
+						Debug.Log (i+":"+rect);
+						Counts [i].transform.localScale = scl;
+					}
 				}
 			}
 			Counts [i].SetActive (active);

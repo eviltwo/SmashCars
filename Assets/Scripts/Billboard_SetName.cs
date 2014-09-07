@@ -31,7 +31,7 @@ public class Billboard_SetName : MonoBehaviour {
 			if(CarObj){
 				if (boss >= 0) {
 					GameObject car = PlayerManager.Instance.getTeamData () [num].TeamPlayers [boss];	// カメラを持つboss
-					if (car) {
+					if (car && PlayerManager.Instance.getTeamData () [num].isCamera) {
 						ItemController iController = car.GetComponent<ItemController> ();
 						GameObject[] enemies = iController.getFindEnemy ();
 						bool find = false;

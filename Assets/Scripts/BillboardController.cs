@@ -14,7 +14,6 @@ public class BillboardController : MonoBehaviour {
 	void Update () {
 		// カメラが増えたならビルボード追加
 		while (Value < CameraManager.Instance.getCameraValue ()) {
-		
 			createBillboard ();
 			Value++;
 		}

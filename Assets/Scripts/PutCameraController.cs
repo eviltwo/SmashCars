@@ -115,7 +115,9 @@ public class PutCameraController : MonoBehaviour {
 		transform.position = basepos;
 	}
 	void randomMove(){
-		transform.LookAt (TargetObject.transform.position);
+		if (TargetObject) {
+			transform.LookAt (TargetObject.transform.position);
+		}
 	}
 
 	// ターゲット中心に回転して撮る
@@ -125,11 +127,13 @@ public class PutCameraController : MonoBehaviour {
 		rottime = Random.Range (0f, 360f);
 	}
 	void rotMove(){
-		transform.position = TargetObject.transform.position;
-		transform.localEulerAngles = new Vector3 (0,rottime,0);
-		transform.position += -transform.forward * rotdist;
-		transform.position += transform.up * rotheight;
-		transform.LookAt (TargetObject.transform.position);
+		if (TargetObject) {
+			transform.position = TargetObject.transform.position;
+			transform.localEulerAngles = new Vector3 (0, rottime, 0);
+			transform.position += -transform.forward * rotdist;
+			transform.position += transform.up * rotheight;
+			transform.LookAt (TargetObject.transform.position);
+		}
 
 		rottime += 15f * Time.deltaTime;
 		if (rottime >= 360) {

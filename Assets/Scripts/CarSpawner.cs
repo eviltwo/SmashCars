@@ -104,6 +104,7 @@ public class CarSpawner : MonoBehaviour {
 					cam.GetComponent<CameraTargetController> ().TeamNum = -1;
 					setCameraPos (cam, team.TeamNumber);
 					CameraManager.Instance.addCamera (cam, team.TeamNumber);		// カメラ登録
+					cam.camera.cullingMask += 1 << LayerMask.NameToLayer ("UI_" + team.TeamNumber);
 				}
 			}
 		}

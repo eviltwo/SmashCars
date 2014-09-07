@@ -20,6 +20,7 @@ public class DeadManager : SingletonMonoBehaviour<DeadManager> {
 			if (DeadList [i]) {
 				if (PlayerManager.Instance.getTeamData () [i].PlayerValue == 0) {
 					DeadList [i] = false;
+					WaitManager.Instance.resetWaitTime (i);
 				} else {
 					if (WaitManager.Instance.getWaitTime (i) <= 0) {
 						// リスポーン

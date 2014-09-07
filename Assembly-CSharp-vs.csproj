@@ -60,6 +60,7 @@
      <Compile Include="Assets\Scripts\CarInput_RandomAI.cs" />
      <Compile Include="Assets\Scripts\CarInput_User.cs" />
      <Compile Include="Assets\Scripts\CarSpawner.cs" />
+     <Compile Include="Assets\Scripts\CountDownController.cs" />
      <Compile Include="Assets\Scripts\DeadManager.cs" />
      <Compile Include="Assets\Scripts\DestroyTimer.cs" />
      <Compile Include="Assets\Scripts\ItemBoxController.cs" />

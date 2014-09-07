@@ -52,4 +52,9 @@ public class WaitManager : SingletonMonoBehaviour<WaitManager> {
 	public float getWaitTime(int team){
 		return WaitTime[team];
 	}
+
+	// 待機時間を0にする
+	public void resetWaitTime(int team){
+		WaitTime [team] = 0;
+	}
 }

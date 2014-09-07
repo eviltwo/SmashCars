@@ -97,7 +97,7 @@ public class ItemController : MonoBehaviour {
 		for (int i = 0; i < teams.Length; i++) {
 			Team team = teams [i];
 			if (team.TeamNumber != myteam) {
-				for (int j = 0; j < team.PlayerValue; j++) {
+				for (int j = 0; j < team.TeamPlayers.Length; j++) {
 					GameObject enemy = team.TeamPlayers [j];
 					if (enemy) {
 						Vector3 myvec = cController.getForward ();

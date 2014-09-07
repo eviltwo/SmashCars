@@ -115,7 +115,6 @@ public class PutCameraController : MonoBehaviour {
 		transform.position = basepos;
 	}
 	void randomMove(){
-		Debug.Log (NowTeam);
 		transform.LookAt (TargetObject.transform.position);
 	}
 

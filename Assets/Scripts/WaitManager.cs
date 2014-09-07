@@ -43,6 +43,11 @@ public class WaitManager : SingletonMonoBehaviour<WaitManager> {
 		}
 	}
 
+	// 死亡時のリスポーンまでのカウントをセット
+	public void setDeadTime(int team){
+		WaitTime [team] = DeadTimeMax;
+	}
+
 	// 待機時間を取得
 	public float getWaitTime(int team){
 		return WaitTime[team];

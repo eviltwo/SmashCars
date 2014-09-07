@@ -58,7 +58,7 @@ public class CarController : MonoBehaviour {
 		}
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			Damage dam = new Damage ();
-			dam.Value = (TeamNum + 1) * 20;
+			dam.Value = (TeamNum + 1) * 10+Random.Range(0,20);
 			addDamage (dam);
 		}
 	}
@@ -276,13 +276,15 @@ public class CarController : MonoBehaviour {
 	// ダメージを受ける
 	public void addDamage(Damage damage){
 		HP = Mathf.Max(0,HP-damage.Value);
-		Debug.Log ("HP="+HP);
 		checkDeath ();
 	}
 
 	// 死んでいないかチェック
 	void checkDeath(){
 		if (HP <= 0) {
+			if (IsBoss) {
+				DeadManager.Instance.setDead (TeamNum);
+			}
 			Destroy (this.gameObject);
 		}
 	}

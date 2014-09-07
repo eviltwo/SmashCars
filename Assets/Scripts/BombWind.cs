@@ -48,7 +48,7 @@ public class BombWind : MonoBehaviour {
 			Damage damage = new Damage ();
 			damage.Value = WindDamage;
 			damage.AttackByObj = this.gameObject;
-			col.SendMessage ("addDamage", damage);
+			col.SendMessage ("addDamage", damage, SendMessageOptions.DontRequireReceiver);
 			AddDamageList.Add (col.gameObject);
 		}
 

@@ -2,8 +2,13 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CarController.cs">
     <Files>
-      <File FileName="Assets/Scripts/CarController.cs" Line="16" Column="16" />
-      <File FileName="Assets/Scripts/struct/Damage.cs" Line="32" Column="32" />
+      <File FileName="Assets/Scripts/CarController.cs" Line="5" Column="5" />
+      <File FileName="Assets/Scripts/struct/Damage.cs" Line="21" Column="21" />
+      <File FileName="Assets/Scripts/BombWind.cs" Line="41" Column="41" />
+      <File FileName="Assets/Scripts/PutCameraController.cs" Line="28" Column="28" />
+      <File FileName="Assets/Scripts/CameraTargetController.cs" Line="69" Column="69" />
+      <File FileName="Assets/Scripts/DeadManager.cs" Line="55" Column="55" />
+      <File FileName="Assets/Scripts/CarInput_User.cs" Line="3" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class CarController : MonoBehaviour {
+	public float HP = 100.0f;
 	public float MotorPowerMax = 10.0f;
 	public float SpeedMax = 120.0f;
 	public float HandleAngleMax = 20.0f;
@@ -54,6 +55,11 @@ public class CarController : MonoBehaviour {
 
 		if (Input.GetKeyDown (KeyCode.R)) {
 			restartCar ();
+		}
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			Damage dam = new Damage ();
+			dam.Value = (TeamNum + 1) * 20;
+			addDamage (dam);
 		}
 	}
 
@@ -265,5 +271,19 @@ public class CarController : MonoBehaviour {
 	// 止まっているか
 	public bool isStop(){
 		return IsStop;
+	}
+
+	// ダメージを受ける
+	public void addDamage(Damage damage){
+		HP = Mathf.Max(0,HP-damage.Value);
+		Debug.Log ("HP="+HP);
+		checkDeath ();
+	}
+
+	// 死んでいないかチェック
+	void checkDeath(){
+		if (HP <= 0) {
+			Destroy (this.gameObject);
+		}
 	}
 }

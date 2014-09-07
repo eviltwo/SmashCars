@@ -40,9 +40,13 @@ public class ItemController : MonoBehaviour {
 		}
 
 		itemchecktime += Time.deltaTime;
-		if (itemchecktime >= ItemCheckTimeMax && !HaveItem) {
-			itemchecktime = 0;
-			searchItemBox ();
+		if (!HaveItem) {
+			if (itemchecktime >= ItemCheckTimeMax) {
+				itemchecktime = 0;
+				searchItemBox ();
+			}
+		} else {
+			FindItemBox = null;
 		}
 
 	}

@@ -61,19 +61,21 @@ public class Item_Missile : MonoBehaviour {
 		for (int i = 0; i < enemies.Length; i++) {
 			GameObject enemy = enemies [i];
 			Vector3 myvec = cController.getForward ();
-			Vector3 envec = (enemy.transform.position - CarObj.transform.position);
-			envec = envec / envec.magnitude;
-			float angle = Vector3.Angle (myvec, envec);
-			if (angle < JustShotangle) {
-				Vector3 stpos = CarObj.transform.position;
-				Vector3 stdir = (enemy.transform.position - CarObj.transform.position);
-				float dist = stdir.magnitude;
-				stdir = stdir / dist;
-				RaycastHit hit;
-				LayerMask mask = (1 << LayerMask.NameToLayer ("Field"));
-				if (dist < JustShotDist) {
-					if (!Physics.Raycast (stpos, stdir, out hit, dist, mask)) {
-						CarObj.SendMessage ("justEnemy", SendMessageOptions.DontRequireReceiver);
+			if (enemy) {
+				Vector3 envec = (enemy.transform.position - CarObj.transform.position);
+				envec = envec / envec.magnitude;
+				float angle = Vector3.Angle (myvec, envec);
+				if (angle < JustShotangle) {
+					Vector3 stpos = CarObj.transform.position;
+					Vector3 stdir = (enemy.transform.position - CarObj.transform.position);
+					float dist = stdir.magnitude;
+					stdir = stdir / dist;
+					RaycastHit hit;
+					LayerMask mask = (1 << LayerMask.NameToLayer ("Field"));
+					if (dist < JustShotDist) {
+						if (!Physics.Raycast (stpos, stdir, out hit, dist, mask)) {
+							CarObj.SendMessage ("justEnemy", SendMessageOptions.DontRequireReceiver);
+						}
 					}
 				}
 			}

@@ -1,11 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/WaitManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CarController.cs">
     <Files>
-      <File FileName="Assets/Scripts/CameraTargetController.cs" Line="17" Column="17" />
-      <File FileName="Assets/Scripts/PutCameraController.cs" Line="20" Column="20" />
-      <File FileName="Assets/Scripts/CarSpawner.cs" Line="61" Column="61" />
-      <File FileName="Assets/Scripts/WaitManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/CarController.cs" Line="16" Column="16" />
+      <File FileName="Assets/Scripts/struct/Damage.cs" Line="32" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

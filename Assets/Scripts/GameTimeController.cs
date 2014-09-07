@@ -2,29 +2,33 @@
 using System.Collections;
 
 public class GameTimeController : MonoBehaviour {
-	public float GameTimeMax = 180;
-	public float SingleModeHeight = 0.8f;
 
-	float GameTime = 0;
+	public float SingleModeHeight = 0.8f;
+	public string OverTimeText = "サドンデス";
+	public Vector3 OverTimeScale;
+
+	GameObject Text;
 	int screen = -1;
 	// Use this for initialization
 	void Start () {
-		GameTime = GameTimeMax;
+		Text = transform.FindChild ("Text").gameObject;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (WaitManager.Instance.IsGameStart) {
-			GameTime = Mathf.Max (0, GameTime - Time.deltaTime);
+		float GameTime = GameTimeManager.Instance.getTime ();
+		if (GameTimeManager.Instance.isTimeOver()) {
+			Text.guiText.text = OverTimeText;
+			Text.transform.localScale = OverTimeScale;
+		}else{
+			int m = Mathf.FloorToInt (GameTime / 60);
+			int s = Mathf.FloorToInt (GameTime % 60);
+			string ss = "";
+			if (s < 10) {
+				ss = "0";
+			}
+			Text.guiText.text = m + ":" + ss + s;
 		}
-		int m = Mathf.FloorToInt (GameTime / 60);
-		int s = Mathf.FloorToInt (GameTime % 60);
-		string ss = "";
-		if (s < 10) {
-			ss = "0";
-		}
-		guiText.text = m + ":" + ss + s;
-
 		if (CameraManager.Instance.ScreenValue == 1) {
 			if (screen != 1) {
 				Vector3 pos = transform.localPosition;

@@ -4,6 +4,7 @@ using System.Collections;
 public class WaitManager : SingletonMonoBehaviour<WaitManager> {
 	public float StartTimeMax = 3.0f;
 	public float DeadTimeMax = 20.0f;
+	public float OverTimeMax = 5.0f;
 	public float[] WaitTime;
 	public bool IsGameStart = false;
 
@@ -45,7 +46,11 @@ public class WaitManager : SingletonMonoBehaviour<WaitManager> {
 
 	// 死亡時のリスポーンまでのカウントをセット
 	public void setDeadTime(int team){
-		WaitTime [team] = DeadTimeMax;
+		if (GameTimeManager.Instance.isTimeOver ()) {
+			WaitTime [team] = OverTimeMax;
+		} else {
+			WaitTime [team] = DeadTimeMax;
+		}
 	}
 
 	// 待機時間を取得

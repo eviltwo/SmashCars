@@ -17,6 +17,7 @@ public class CarController : MonoBehaviour {
 	public GameObject[] ChangeColorParts;
 	public int InputNum = 0;
 	public bool IsBoss = false;
+	public float OverTimeDamage = 1;
 
 	int SpeedLogMax = 5;
 	float[] SpeedLog;
@@ -32,6 +33,7 @@ public class CarController : MonoBehaviour {
 	float stoptime = 0;
 	float VecSpeed = 0;
 	bool IsStop = false;
+	float overtime = 0;
 	// Use this for initialization
 	void Start () {
 		for (int i = 0; i < WheelColliderObj.Length; i++) {
@@ -52,6 +54,7 @@ public class CarController : MonoBehaviour {
 		checkStop ();
 		calcAverageSpeed ();
 		respawnCar ();
+		checkTimeOver ();
 
 		if (Input.GetKeyDown (KeyCode.R)) {
 			restartCar ();
@@ -288,6 +291,20 @@ public class CarController : MonoBehaviour {
 				DeadManager.Instance.setDead (TeamNum);
 			}
 			Destroy (this.gameObject);
+		}
+	}
+
+	// タイムオーバー(サドンデス時)、体力を削り続ける
+	void checkTimeOver(){
+		if (GameTimeManager.Instance.isTimeOver ()) {
+			overtime += Time.deltaTime;
+			if (overtime >= 1) {
+				overtime -= 1;
+				Damage dam = new Damage ();
+				dam.Value = OverTimeDamage;
+				dam.AttackByObj = this.gameObject;
+				addDamage (dam);
+			}
 		}
 	}
 }

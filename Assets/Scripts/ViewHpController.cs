@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CountDownController : MonoBehaviour {
+public class ViewHpController : MonoBehaviour {
 	public GameObject NumberPrefab;
 
 	GameObject[] Counts;
@@ -9,7 +9,7 @@ public class CountDownController : MonoBehaviour {
 	void Start () {
 		createCount ();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		moveCountStatus ();
@@ -24,18 +24,21 @@ public class CountDownController : MonoBehaviour {
 			count.transform.parent = transform;
 			count.layer = LayerMask.NameToLayer ("UI_" + i);
 			count.SetActive (false);
+			count.guiText.color = PlayerManager.Instance.getTeamData () [i].TeamColor;
 			Counts [i] = count;
 		}
 	}
 
 	// カウントの状態を変更
 	void moveCountStatus(){
+		Team[] teams = PlayerManager.Instance.getTeamData ();
 		for (int i = 0; i < Counts.Length; i++) {
 			bool active = false;
-			if (PlayerManager.Instance.getTeamData () [i].isCamera) {
-				float count = WaitManager.Instance.getWaitTime (i);
-				if (count > 0) {
-					int value = Mathf.CeilToInt (count);
+			int boss = teams[i].BossNumber;
+			if (boss >= 0) {
+				if (teams [i].TeamPlayers [boss]) {
+					float hp = teams [i].TeamPlayers [boss].GetComponent<CarController> ().HP;
+					int value = Mathf.CeilToInt (hp);
 					Counts [i].guiText.text = value.ToString ();
 					active = true;
 				}

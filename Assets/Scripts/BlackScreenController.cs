@@ -34,7 +34,7 @@ public class BlackScreenController : MonoBehaviour {
 		for (int i = 0; i < Screens.Length; i++) {
 			int boss = PlayerManager.Instance.getTeamData () [i].BossNumber;
 			bool active = false;
-			if (boss < 0 || !PlayerManager.Instance.getTeamData () [i].isCamera) {
+			if (boss < 0 || !PlayerManager.Instance.getTeamData () [i].isCamera || !WaitManager.Instance.IsGameStart) {
 				active = true;
 			}
 			Screens [i].SetActive (active);

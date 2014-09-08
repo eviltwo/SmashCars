@@ -69,7 +69,7 @@ public class CarInput_AI : MonoBehaviour {
 				float carY = Quaternion.LookRotation (cController.getForward ()).eulerAngles.y;
 				float dirY = Quaternion.LookRotation (dir).eulerAngles.y;
 				float rot = Mathf.DeltaAngle (carY, dirY);
-				nowhandle = rot / 60;
+				nowhandle = rot / 90;
 				nowhandle = Mathf.Min (1, Mathf.Max (-1, nowhandle));
 			}
 		}

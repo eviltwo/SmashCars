@@ -18,6 +18,7 @@ public class CarController : MonoBehaviour {
 	public int InputNum = 0;
 	public bool IsBoss = false;
 	public float OverTimeDamage = 1;
+	public GameObject DestroyEffectPrefab;
 
 	int SpeedLogMax = 5;
 	float[] SpeedLog;
@@ -290,6 +291,8 @@ public class CarController : MonoBehaviour {
 			if (IsBoss) {
 				DeadManager.Instance.setDead (TeamNum);
 			}
+			GameObject effect = (GameObject)Instantiate (DestroyEffectPrefab);
+			effect.transform.position = transform.position;
 			Destroy (this.gameObject);
 		}
 	}

@@ -296,7 +296,7 @@ public class CarController : MonoBehaviour {
 
 	// タイムオーバー(サドンデス時)、体力を削り続ける
 	void checkTimeOver(){
-		if (GameTimeManager.Instance.isTimeOver ()) {
+		if (GameTimeManager.Instance.isTimeOver () && !PlayerManager.Instance.isGameEnd) {
 			overtime += Time.deltaTime;
 			if (overtime >= 1) {
 				overtime -= 1;

@@ -62,14 +62,14 @@ public class ViewPlayerValueController : MonoBehaviour {
 			int value = teams [i].PlayerValue;
 			Counts [i].guiText.text = value.ToString ();
 			// サイズ
-			GameObject cam = CameraManager.Instance.getCamera (i);
+			/*GameObject cam = CameraManager.Instance.getCamera (i);
 			if (cam) {
 				Rect rect = cam.camera.rect;
 				float mlt = rect.height / rect.width;
 				Vector3 scl = OriginScale;
 				scl.x *= mlt;
 				Counts [i].transform.localScale = scl;
-			}
+			}*/
 			// 位置
 			Vector3 pos = Counts[i].transform.localPosition;
 			if (CameraManager.Instance.ScreenValue == 1) {

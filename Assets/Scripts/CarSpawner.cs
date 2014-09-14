@@ -11,6 +11,7 @@ public class CarSpawner : MonoBehaviour {
 	public GameObject NameBillboardPrefab;
 
 	int CameraValue;
+	int CameraCount = 0;
 	// Use this for initialization
 	void Start () {
 		spawnAllCar ();
@@ -99,13 +100,16 @@ public class CarSpawner : MonoBehaviour {
 				setCameraPos (cam, team.TeamNumber);
 				CameraManager.Instance.addCamera (cam, team.TeamNumber);		// カメラ登録
 				cam.camera.cullingMask += 1 << LayerMask.NameToLayer ("UI_" + team.TeamNumber);
+				CameraCount++;
 			} else {
-				if (team.TeamNumber < CameraValue) {
+				if (4 == CameraValue) {
+					Debug.Log (CameraValue);
 					GameObject cam = (GameObject)Instantiate (CarCameraPrefab);
 					cam.GetComponent<CameraTargetController> ().TeamNum = -1;
 					setCameraPos (cam, team.TeamNumber);
 					CameraManager.Instance.addCamera (cam, team.TeamNumber);		// カメラ登録
 					cam.camera.cullingMask += 1 << LayerMask.NameToLayer ("UI_" + team.TeamNumber);
+					CameraCount++;
 				}
 			}
 		}
@@ -119,6 +123,9 @@ public class CarSpawner : MonoBehaviour {
 	}
 
 	void setCameraPos(GameObject cam, int teamnum){
+		if (CameraValue <= 2) {
+			teamnum = CameraCount;
+		}
 		Rect rect;
 		switch (CameraValue) {
 		case 1:

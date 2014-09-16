@@ -108,7 +108,9 @@ public class PutCameraController : MonoBehaviour {
 
 	// ターゲットの先で待ち伏せて撮る
 	void randomMoveStart(){
-		Vector3 basepos = OldPos + (NewPos - OldPos) * ForwardMlt;
+		//Vector3 basepos = OldPos + (NewPos - OldPos) * ForwardMlt;
+		Vector3 velvec = TargetObject.rigidbody.velocity / TargetObject.rigidbody.velocity.magnitude;
+		Vector3 basepos = TargetObject.transform.position+velvec*MoveDist;
 		basepos.x += Random.Range (-RandomSize.x, RandomSize.y);
 		basepos.y = Random.Range (0.1f, RandomSize.y);
 		basepos.z += Random.Range (-RandomSize.z, RandomSize.z);

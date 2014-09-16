@@ -61,11 +61,6 @@ public class CarController : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.R)) {
 			restartCar ();
 		}
-		if (Input.GetKeyDown (KeyCode.Space)) {
-			Damage dam = new Damage ();
-			dam.Value = (TeamNum + 1) * 10+Random.Range(0,20);
-			addDamage (dam);
-		}
 	}
 
 	// 入力を読み込ませる

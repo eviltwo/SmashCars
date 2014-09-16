@@ -23,5 +23,12 @@ public class CarInput_User : MonoBehaviour {
 		if (dirinput.y > 0) {
 			iController.useItem ();
 		}
+
+		// ゲーム終了時、自動運転
+		if (PlayerManager.Instance.isGameEnd) {
+			GetComponent<CarInput_AI> ().enabled = true;
+			this.enabled = false;
+
+		}
 	}
 }

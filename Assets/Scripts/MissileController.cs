@@ -12,16 +12,21 @@ public class MissileController : MonoBehaviour {
 	public GameObject BombEffectPrefab;
 	public GameObject[] ChangeColorObj;
 	public GameObject[] ChangeColorParticle;
+	public AudioClip BombAudio;
+	public GameObject RotObject;
+	public float RandomRotMax = 100;
 
 	int TeamNum;
 	Vector3 StartPos;
 	Vector3 OldGround = Vector3.zero;
 	float totaldist = 0;
+	float ranrot = 0;
 	// Use this for initialization
 	void Start () {
 		StartPos = transform.position;
 		OldGround = transform.position;
 		changeColor ();
+		ranrot = Random.Range (-RandomRotMax, RandomRotMax);
 	}
 	
 	// Update is called once per frame
@@ -59,6 +64,11 @@ public class MissileController : MonoBehaviour {
 			}
 		}
 
+		// 回転
+		Vector3 rot = RotObject.transform.localEulerAngles;
+		rot.z += ranrot * Time.deltaTime;
+		RotObject.transform.localEulerAngles = rot;
+
 		if (totaldist >= BombDist) {
 			Bomb ();
 		}
@@ -75,8 +85,11 @@ public class MissileController : MonoBehaviour {
 			if (cc.TeamNum == TeamNum) {
 				return;
 			}
+		} else {
+			if (collider.gameObject.layer == LayerMask.NameToLayer ("FieldCollider")) {
+				return;
+			}
 		}
-
 		Bomb ();
 	}
 
@@ -88,6 +101,8 @@ public class MissileController : MonoBehaviour {
 		GameObject effect = (GameObject)Instantiate (BombEffectPrefab);
 		effect.transform.position = transform.position;
 		effect.SendMessage ("StartSet", TeamNum);
+		// 音
+		AudioManager.Instance.playSE (BombAudio, transform.position);
 		Destroy (this.gameObject);
 	}
 

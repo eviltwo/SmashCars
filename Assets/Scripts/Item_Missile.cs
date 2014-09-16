@@ -10,6 +10,7 @@ public class Item_Missile : MonoBehaviour {
 	public float MinusDist = 0.1f;
 	public float JustShotangle = 10.0f;
 	public float JustShotDist = 80.0f;
+	public AudioClip ShootAudio;
 
 	GameObject CarObj;
 	int TeamNum;
@@ -39,7 +40,8 @@ public class Item_Missile : MonoBehaviour {
 	void Use(){
 		// 発射
 		spawnMissile ();
-
+		// 発射音
+		AudioManager.Instance.playSE (ShootAudio, CarObj.transform.position);
 		// アイテムを使用済みにする
 		transform.parent.SendMessage ("deleteItem", SendMessageOptions.DontRequireReceiver);
 	}

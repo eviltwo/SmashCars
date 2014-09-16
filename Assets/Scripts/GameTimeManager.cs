@@ -13,10 +13,10 @@ public class GameTimeManager : SingletonMonoBehaviour<GameTimeManager> {
 	
 	// Update is called once per frame
 	void Update () {
-		if (WaitManager.Instance.IsGameStart) {
+		if (WaitManager.Instance.IsGameStart && !PlayerManager.Instance.isGameEnd) {
 			GameTime = Mathf.Max (0, GameTime - Time.deltaTime);
 		}
-		if (GameTime <= 0) {
+		if (GameTime <= 0 && !TimeOver) {
 			TimeOver = true;
 		}
 	}

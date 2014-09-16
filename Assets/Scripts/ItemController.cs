@@ -9,6 +9,7 @@ public class ItemController : MonoBehaviour {
 	public float OutEyeAngle = 45.0f;
 	public float ItemBoxHeightMax = 0.5f;
 	public float WallHeight = 0.5f;
+	public AudioClip ItemAudio;
 
 	GameObject[] Items;
 	bool HaveItem = false;
@@ -57,6 +58,8 @@ public class ItemController : MonoBehaviour {
 		HaveItem = true;
 		ItemLevel++;
 		ItemType = 0;
+		// 音
+		AudioManager.Instance.playSE (ItemAudio, transform.position);
 	}
 
 	// 子にアイテムを追加

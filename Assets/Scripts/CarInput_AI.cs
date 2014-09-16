@@ -122,7 +122,7 @@ public class CarInput_AI : MonoBehaviour {
 		Vector3 stpos = RayShotObj.transform.position;
 		Vector3 stdir = RayShotObj.transform.forward;
 		RaycastHit hit;
-		LayerMask mask = (1 << LayerMask.NameToLayer ("Field"));
+		LayerMask mask = (1 << LayerMask.NameToLayer ("Field")) +  (1 << LayerMask.NameToLayer ("FieldCollider"));
 		HitWall hitwall = new HitWall ();
 		hitwall.angle = RayShotObj.transform.eulerAngles.y;
 		hitwall.isWall = false;

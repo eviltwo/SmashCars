@@ -46,6 +46,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\AudioManager.cs" />
+     <Compile Include="Assets\Scripts\AudioPlayer.cs" />
      <Compile Include="Assets\Scripts\BillboardController.cs" />
      <Compile Include="Assets\Scripts\Billboard_SetName.cs" />
      <Compile Include="Assets\Scripts\BlackScreenController.cs" />
@@ -81,6 +83,7 @@
      <Compile Include="Assets\Scripts\ViewItemController.cs" />
      <Compile Include="Assets\Scripts\ViewPlayerValueController.cs" />
      <Compile Include="Assets\Scripts\ViewRankController.cs" />
+     <Compile Include="Assets\Scripts\ViewSuddendeath.cs" />
      <Compile Include="Assets\Scripts\WaitManager.cs" />
      <Compile Include="Assets\Scripts\struct\Damage.cs" />
      <Compile Include="Assets\Scripts\struct\HitWall.cs" />

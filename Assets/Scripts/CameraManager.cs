@@ -4,6 +4,7 @@ using System.Collections;
 // チームごとのカメラを管理
 public class CameraManager : SingletonMonoBehaviour<CameraManager> {
 
+	/// カメラ数(<=プレイヤー数)
 	public int ScreenValue = 0;
 
 	GameObject[] CameraList = new GameObject[0];
@@ -22,7 +23,7 @@ public class CameraManager : SingletonMonoBehaviour<CameraManager> {
 		return CameraList [team];
 	}
 
-	// カメラ数取得
+	/// カメラ数取得(プレイヤー数)
 	public int getCameraValue(){
 		return CameraList.Length;
 	}

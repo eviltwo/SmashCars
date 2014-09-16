@@ -19,6 +19,7 @@ public class CarController : MonoBehaviour {
 	public bool IsBoss = false;
 	public float OverTimeDamage = 1;
 	public GameObject DestroyEffectPrefab;
+	public AudioClip DestroyAudio;
 
 	int SpeedLogMax = 5;
 	float[] SpeedLog;
@@ -293,6 +294,8 @@ public class CarController : MonoBehaviour {
 			}
 			GameObject effect = (GameObject)Instantiate (DestroyEffectPrefab);
 			effect.transform.position = transform.position;
+			// 音
+			AudioManager.Instance.playSE (DestroyAudio, transform.position);
 			Destroy (this.gameObject);
 		}
 	}

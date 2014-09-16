@@ -4,6 +4,7 @@ using System.Collections;
 public class ItemBoxController : MonoBehaviour {
 
 	public GameObject Model;
+	public GameObject Model2;
 	public float RespawnTimeMax = 5.0f;
 	public float RotSpeed = 15.0f;
 	public GameObject BreakPrefab;
@@ -24,6 +25,7 @@ public class ItemBoxController : MonoBehaviour {
 			if (respawntime >= RespawnTimeMax) {
 				visible = true;
 				Model.renderer.enabled = true;
+				Model2.SetActive (true);
 			}
 		}
 	}
@@ -35,6 +37,7 @@ public class ItemBoxController : MonoBehaviour {
 			visible = false;
 			respawntime = 0;
 			Model.renderer.enabled = false;
+			Model2.SetActive (false);
 
 			GameObject effect = (GameObject)Instantiate (BreakPrefab);
 			effect.transform.position = transform.position;

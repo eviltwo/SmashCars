@@ -81,6 +81,7 @@
      <Compile Include="Assets\Scripts\MissileController.cs" />
      <Compile Include="Assets\Scripts\ObjSpawner.cs" />
      <Compile Include="Assets\Scripts\PlayerManager.cs" />
+     <Compile Include="Assets\Scripts\PlayerSelectManager.cs" />
      <Compile Include="Assets\Scripts\PutCameraController.cs" />
      <Compile Include="Assets\Scripts\Rotor.cs" />
      <Compile Include="Assets\Scripts\Rotor_Model.cs" />

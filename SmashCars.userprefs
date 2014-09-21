@@ -1,13 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/AudioManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Item_Missile.cs">
     <Files>
-      <File FileName="Assets/Scripts/ViewSuddendeath.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/GameTimeController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/MissileController.cs" Line="7" Column="7" />
-      <File FileName="Assets/Scripts/CarInput_AI.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/AudioPlayer.cs" Line="20" Column="20" />
-      <File FileName="Assets/Scripts/AudioManager.cs" Line="8" Column="8" />
+      <File FileName="Assets/Scripts/CameraTargetController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PutCameraController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/CarInput_User.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/CarController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GUITextureButton.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Item_Missile.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

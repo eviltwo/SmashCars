@@ -65,8 +65,10 @@
      <Compile Include="Assets\Scripts\CountDownController.cs" />
      <Compile Include="Assets\Scripts\DeadManager.cs" />
      <Compile Include="Assets\Scripts\DestroyTimer.cs" />
+     <Compile Include="Assets\Scripts\GUITextureButton.cs" />
      <Compile Include="Assets\Scripts\GameTimeController.cs" />
      <Compile Include="Assets\Scripts\GameTimeManager.cs" />
+     <Compile Include="Assets\Scripts\InputManager.cs" />
      <Compile Include="Assets\Scripts\ItemBoxController.cs" />
      <Compile Include="Assets\Scripts\ItemBoxManager.cs" />
      <Compile Include="Assets\Scripts\ItemController.cs" />

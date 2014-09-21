@@ -4,6 +4,8 @@ using System.Collections;
 public class ViewItemController : MonoBehaviour {
 	public GameObject ViewItemPrefab;
 	public Texture[] Icon;
+	public Vector3 IconPos;
+	public Vector3 IconScale;
 
 	GameObject[] Items;
 	// Use this for initialization
@@ -41,8 +43,21 @@ public class ViewItemController : MonoBehaviour {
 					ItemController iController = bossplayer.GetComponent<ItemController> ();
 					if (iController.getHaveItem ()) {
 						int type = iController.getItemType ();
-						Items [i].transform.FindChild ("Icon").gameObject.guiTexture.texture = Icon [type];
-						Items [i].transform.FindChild ("Icon").gameObject.guiTexture.color = PlayerManager.Instance.getTeamData () [i].TeamColor;
+						GameObject icon = Items [i].transform.FindChild ("Icon").gameObject;
+						icon.guiTexture.texture = Icon [type];
+						Color c = PlayerManager.Instance.Teams [i].TeamColor;
+						float cmlt = 0.4f;
+						c.r += (1-c.r)*cmlt;
+						c.g += (1-c.g)*cmlt;
+						c.b += (1-c.b)*cmlt;
+						icon.guiTexture.color = c;
+
+						Rect rect = CameraManager.Instance.getCamera(i).camera.rect;
+						float mlt = rect.height / rect.width;
+						Vector3 scl = IconScale;
+						scl.x *= mlt;
+						icon.transform.localScale = scl;
+						icon.transform.localPosition = IconPos;
 						active = true;
 					}
 				}

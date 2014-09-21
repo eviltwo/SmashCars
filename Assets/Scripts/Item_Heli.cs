@@ -46,7 +46,7 @@ public class Item_Heli : MonoBehaviour {
 		Arrow = (GameObject)Instantiate (ArrowPrefab);
 		Arrow.transform.FindChild("Arrow").GetComponent<SpriteRenderer>().color = PlayerManager.Instance.getTeamData()[TeamNum].TeamColor;
 		Arrow.transform.FindChild("Arrow").gameObject.layer = LayerMask.NameToLayer ("UI_" + TeamNum);
-		//Arrow.transform.parent = CarObj.transform;
+		Arrow.transform.parent = CarObj.transform;
 		Arrow.SetActive (false);
 
 	}
@@ -118,7 +118,7 @@ public class Item_Heli : MonoBehaviour {
 		if (Physics.Raycast (pos + Vector3.up * 1000f, Vector3.down, out hit, Mathf.Infinity, mask)) {
 			pos = hit.point;
 			Arrow.transform.position = pos;
-			Arrow.transform.localEulerAngles = new Vector3 (0, arrowrot, 0);
+			Arrow.transform.eulerAngles = new Vector3 (0, arrowrot, 0);
 		} else {
 			Arrow.SetActive (false);
 		}

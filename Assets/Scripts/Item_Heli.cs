@@ -5,8 +5,9 @@ public class Item_Heli : MonoBehaviour {
 
 	public GameObject MissilePrefab;
 	public float Dist = 5.0f;
-	public float JustShotangle = 10.0f;
-	public float JustShotDist = 80.0f;
+	public int PlusValue = 2;
+	public float MinusInterval = 0.02f;
+	public float JustShotDist = 50.0f;
 	public AudioClip ShootAudio;
 	public GameObject ArrowPrefab;
 	public float ArrowRotSpeed = 180;
@@ -75,30 +76,30 @@ public class Item_Heli : MonoBehaviour {
 			heli.transform.position = pos;
 		}
 		heli.SendMessage ("StartSet", TeamNum, SendMessageOptions.DontRequireReceiver);
+		heli.GetComponent<HeliCallController> ().MissileValue += PlusValue * iController.getItemLevel ();
+		heli.GetComponent<HeliCallController> ().FallInterval -= MinusInterval * iController.getItemLevel ();
 	}
 
 	// 索敵・発射判定
 	void checkShot(){
+		Vector3 vec = cController.getForward ();
+		vec.y = 0;
+		vec = vec / vec.magnitude;
+		Vector3 pos = CarObj.transform.position + vec * Dist;
+		RaycastHit hit;
+		LayerMask mask = (1 << LayerMask.NameToLayer ("Field"));
+		if (Physics.Raycast (pos + Vector3.up * 1000f, Vector3.down, out hit, Mathf.Infinity, mask)) {
+			pos = hit.point;
+		} else {
+			return;
+		}
+
 		GameObject[] enemies = iController.getFindEnemy ();
 		for (int i = 0; i < enemies.Length; i++) {
 			GameObject enemy = enemies [i];
-			Vector3 myvec = cController.getForward ();
 			if (enemy) {
-				Vector3 envec = (enemy.transform.position - CarObj.transform.position);
-				envec = envec / envec.magnitude;
-				float angle = Vector3.Angle (myvec, envec);
-				if (angle < JustShotangle) {
-					Vector3 stpos = CarObj.transform.position;
-					Vector3 stdir = (enemy.transform.position - CarObj.transform.position);
-					float dist = stdir.magnitude;
-					stdir = stdir / dist;
-					RaycastHit hit;
-					LayerMask mask = (1 << LayerMask.NameToLayer ("Field"));
-					if (dist < JustShotDist) {
-						if (!Physics.Raycast (stpos, stdir, out hit, dist, mask)) {
-							CarObj.SendMessage ("justEnemy", SendMessageOptions.DontRequireReceiver);
-						}
-					}
+				if (Vector3.Distance (enemy.transform.position, pos) < JustShotDist) {
+					CarObj.SendMessage ("justEnemy", SendMessageOptions.DontRequireReceiver);
 				}
 			}
 		}

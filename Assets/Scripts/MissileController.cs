@@ -86,7 +86,7 @@ public class MissileController : MonoBehaviour {
 				return;
 			}
 		} else {
-			if (collider.gameObject.layer == LayerMask.NameToLayer ("FieldCollider")) {
+			if (collider.gameObject.layer == LayerMask.NameToLayer ("FieldCollider") || collider.gameObject.layer == LayerMask.NameToLayer ("Field")) {
 				return;
 			}
 		}

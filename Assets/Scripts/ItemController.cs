@@ -56,8 +56,11 @@ public class ItemController : MonoBehaviour {
 	// アイテム追加
 	void getItem(){
 		HaveItem = true;
+		if (ItemLevel == 0) {
+			//ItemType = Random.Range (0,ItemPrefab.Length);
+			ItemType = 1;
+		}
 		ItemLevel++;
-		ItemType = 0;
 		// 音
 		AudioManager.Instance.playSE (ItemAudio, transform.position);
 	}

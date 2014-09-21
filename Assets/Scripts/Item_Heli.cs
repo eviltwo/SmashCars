@@ -1,28 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Item_Missile : MonoBehaviour {
+public class Item_Heli : MonoBehaviour {
 
 	public GameObject MissilePrefab;
-	public int Value = 5;
-	public int PlusValue = 1;
 	public float Dist = 5.0f;
-	public float MinusDist = 0.1f;
 	public float JustShotangle = 10.0f;
 	public float JustShotDist = 80.0f;
-	public GameObject ArrowPrefab;
 	public AudioClip ShootAudio;
+	public GameObject ArrowPrefab;
+	public float ArrowRotSpeed = 180;
 
 	GameObject CarObj;
 	GameObject Arrow;
 	int TeamNum;
 	int MyType = 0;
+	float arrowrot = 0;
 	CarController cController;
 	ItemController iController;
 	// Use this for initialization
 	void Start () {
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		Arrow.SetActive (false);
@@ -42,11 +41,13 @@ public class Item_Missile : MonoBehaviour {
 		TeamNum = cController.TeamNum;
 		MyType = type;
 
+
 		Arrow = (GameObject)Instantiate (ArrowPrefab);
 		Arrow.transform.FindChild("Arrow").GetComponent<SpriteRenderer>().color = PlayerManager.Instance.getTeamData()[TeamNum].TeamColor;
 		Arrow.transform.FindChild("Arrow").gameObject.layer = LayerMask.NameToLayer ("UI_" + TeamNum);
-		Arrow.transform.parent = CarObj.transform;
+		//Arrow.transform.parent = CarObj.transform;
 		Arrow.SetActive (false);
+
 	}
 
 	// アイテムボタンが押されている
@@ -59,21 +60,21 @@ public class Item_Missile : MonoBehaviour {
 		transform.parent.SendMessage ("deleteItem", SendMessageOptions.DontRequireReceiver);
 	}
 
-	// ミサイル生成
+	// ヘリ発生機を生成
 	void spawnMissile(){
-		int level = iController.getItemLevel ()-1;
-		int missilevalue = Value + PlusValue * level;
-		float dist = Dist - MinusDist * level;
-		for (int i = 0; i < missilevalue; i++) {
-			GameObject missile = (GameObject)Instantiate (MissilePrefab);
-			missile.transform.position = CarObj.transform.position;
-			missile.transform.LookAt (missile.transform.position + cController.getForward());
-			float basepos = i * dist;
-			float pos = -dist * (missilevalue-1) / 2 + basepos;
-			missile.transform.Rotate (0,pos,0);
-			missile.transform.position += missile.transform.forward*1.5f;
-			missile.SendMessage ("StartSet", TeamNum);
+		Vector3 vec = cController.getForward ();
+		vec.y = 0;
+		vec = vec / vec.magnitude;
+		Vector3 pos = CarObj.transform.position + vec * Dist;
+		GameObject heli = (GameObject)Instantiate (MissilePrefab);
+		RaycastHit hit;
+		LayerMask mask = (1 << LayerMask.NameToLayer ("Field"));
+		if (Physics.Raycast (pos + Vector3.up * 1000f, Vector3.down, out hit, Mathf.Infinity, mask)) {
+			heli.transform.position = hit.point;
+		} else {
+			heli.transform.position = pos;
 		}
+		heli.SendMessage ("StartSet", TeamNum, SendMessageOptions.DontRequireReceiver);
 	}
 
 	// 索敵・発射判定
@@ -105,7 +106,20 @@ public class Item_Missile : MonoBehaviour {
 
 	// 発射方向表示
 	void viewArrow(){
-		Arrow.transform.localPosition = Vector3.zero;
-		Arrow.transform.rotation = Quaternion.LookRotation (cController.getForward ());
+		arrowrot += ArrowRotSpeed * Time.deltaTime;
+		arrowrot = arrowrot % 360;
+		Vector3 vec = cController.getForward ();
+		vec.y = 0;
+		vec = vec / vec.magnitude;
+		Vector3 pos = CarObj.transform.position + vec * Dist;
+		RaycastHit hit;
+		LayerMask mask = (1 << LayerMask.NameToLayer ("Field"));
+		if (Physics.Raycast (pos + Vector3.up * 1000f, Vector3.down, out hit, Mathf.Infinity, mask)) {
+			pos = hit.point;
+			Arrow.transform.position = pos;
+			Arrow.transform.localEulerAngles = new Vector3 (0, arrowrot, 0);
+		} else {
+			Arrow.SetActive (false);
+		}
 	}
 }

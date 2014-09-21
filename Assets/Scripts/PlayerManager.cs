@@ -12,8 +12,10 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager> {
 	}
 
 	void Update(){
-		checkPlayer ();
-		checkWin ();
+		if (Application.loadedLevelName != "PlayerSelect") {
+			checkPlayer ();
+			checkWin ();
+		}
 	}
 
 	// 人数・bossを確認

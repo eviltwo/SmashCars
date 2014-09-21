@@ -18,7 +18,6 @@ public class InputManager : SingletonMonoBehaviour<InputManager> {
 		} else {
 			// pc
 			clickPC ();
-			retryPC ();
 		}
 	}
 
@@ -52,20 +51,6 @@ public class InputManager : SingletonMonoBehaviour<InputManager> {
 		return Click;
 	}
 
-	void retryPC(){
-		if (Input.GetKeyDown (KeyCode.R)) {
-			goRetry ();
-		}
-	}
-
-	void goRetry(){
-		Application.LoadLevel ("Main");
-	}
-
-
-	public void setRetry(){
-		goRetry ();
-	}
 
 	public Vector2 getMousePos(){
 		return MousePos;

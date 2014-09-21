@@ -54,6 +54,8 @@
      <Compile Include="Assets\Scripts\BombEffect.cs" />
      <Compile Include="Assets\Scripts\BombQuad.cs" />
      <Compile Include="Assets\Scripts\BombWind.cs" />
+     <Compile Include="Assets\Scripts\Button\GUITextureButton.cs" />
+     <Compile Include="Assets\Scripts\Button\LoadFieldScene.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\CameraManager.cs" />
      <Compile Include="Assets\Scripts\CameraTargetController.cs" />
@@ -65,8 +67,8 @@
      <Compile Include="Assets\Scripts\CountDownController.cs" />
      <Compile Include="Assets\Scripts\DeadManager.cs" />
      <Compile Include="Assets\Scripts\DestroyTimer.cs" />
+     <Compile Include="Assets\Scripts\DontDestroy.cs" />
      <Compile Include="Assets\Scripts\FallMissileController.cs" />
-     <Compile Include="Assets\Scripts\GUITextureButton.cs" />
      <Compile Include="Assets\Scripts\GameTimeController.cs" />
      <Compile Include="Assets\Scripts\GameTimeManager.cs" />
      <Compile Include="Assets\Scripts\HeliCallController.cs" />

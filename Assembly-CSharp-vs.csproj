@@ -54,8 +54,6 @@
      <Compile Include="Assets\Scripts\BombEffect.cs" />
      <Compile Include="Assets\Scripts\BombQuad.cs" />
      <Compile Include="Assets\Scripts\BombWind.cs" />
-     <Compile Include="Assets\Scripts\Button\GUITextureButton.cs" />
-     <Compile Include="Assets\Scripts\Button\LoadFieldScene.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\CameraManager.cs" />
      <Compile Include="Assets\Scripts\CameraTargetController.cs" />
@@ -81,8 +79,17 @@
      <Compile Include="Assets\Scripts\MissileController.cs" />
      <Compile Include="Assets\Scripts\ObjSpawner.cs" />
      <Compile Include="Assets\Scripts\PlayerManager.cs" />
-     <Compile Include="Assets\Scripts\PlayerSelectManager.cs" />
+     <Compile Include="Assets\Scripts\PlayerSelect\Button_CameraCheck.cs" />
+     <Compile Include="Assets\Scripts\PlayerSelect\Button_FieldChange.cs" />
+     <Compile Include="Assets\Scripts\PlayerSelect\Button_UserCheck.cs" />
+     <Compile Include="Assets\Scripts\PlayerSelect\GUITextureButton.cs" />
+     <Compile Include="Assets\Scripts\PlayerSelect\LoadFieldScene.cs" />
+     <Compile Include="Assets\Scripts\PlayerSelect\PlayerSelectManager.cs" />
+     <Compile Include="Assets\Scripts\PlayerSelect\ViewFieldName.cs" />
+     <Compile Include="Assets\Scripts\PlayerSelect\ViewSelectField.cs" />
+     <Compile Include="Assets\Scripts\PlayerSelect\ViewTeamColor.cs" />
      <Compile Include="Assets\Scripts\PutCameraController.cs" />
+     <Compile Include="Assets\Scripts\ReturnController.cs" />
      <Compile Include="Assets\Scripts\Rotor.cs" />
      <Compile Include="Assets\Scripts\Rotor_Model.cs" />
      <Compile Include="Assets\Scripts\SingletonMonoBehaviour.cs" />

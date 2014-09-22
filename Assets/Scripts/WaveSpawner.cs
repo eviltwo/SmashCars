@@ -5,6 +5,7 @@ public class WaveSpawner : MonoBehaviour {
 	public GameObject EffectPrefab;
 
 	int TeamNum = 0;
+	float DistMax = 0;
 	// Use this for initialization
 	void Start () {
 		spawnEffect ();
@@ -15,6 +16,9 @@ public class WaveSpawner : MonoBehaviour {
 	
 	}
 
+	void SetDist(float dist){
+		DistMax = dist;
+	}
 	void StartSet(int team){
 		TeamNum = team;
 	}
@@ -23,5 +27,6 @@ public class WaveSpawner : MonoBehaviour {
 		GameObject effect = (GameObject)Instantiate (EffectPrefab);
 		effect.transform.position = transform.position;
 		effect.SendMessage ("StartSet", TeamNum, SendMessageOptions.DontRequireReceiver);
+		effect.SendMessage ("SetDist", DistMax, SendMessageOptions.DontRequireReceiver);
 	}
 }

@@ -4,15 +4,20 @@ using System.Collections;
 public class WaveEffectController : MonoBehaviour {
 	public GameObject LinePrefab;
 	public int LineValue = 20;
-	public float DistMax = 5.0f;
 	public float Height = 0.5f;
 	public float SpeedMlt = 0.1f;
 	public float ScaleMax = 5;
 
+	int TeamNum = 0;
+	float DistMax = 0f;
 	float Dist = 0;
 	GameObject[] Lines;
+	GameObject Wave;
 	// Use this for initialization
 	void Start () {
+		Wave = transform.FindChild ("Smoke").gameObject;
+		Color c = PlayerManager.Instance.getTeamData () [TeamNum].TeamColor;
+		Wave.GetComponent<ParticleRenderer>().material.SetColor("_TintColor",c);
 		spawnLine ();
 		moveLine ();
 	}
@@ -23,11 +28,19 @@ public class WaveEffectController : MonoBehaviour {
 		moveLine ();
 	}
 
+	void SetDist(float dist){
+		DistMax = dist;
+	}
+	void StartSet(int team){
+		TeamNum = team;
+	}
+
 	void spawnLine(){
 		Lines = new GameObject[LineValue];
 		for (int i = 0; i < LineValue; i++) {
 			GameObject line = (GameObject)Instantiate (LinePrefab);
 			line.transform.parent = transform;
+			line.GetComponent<SpriteRenderer> ().color = PlayerManager.Instance.getTeamData () [TeamNum].TeamColor;
 			Lines [i] = line;
 		}
 	}

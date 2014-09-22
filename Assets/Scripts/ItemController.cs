@@ -53,7 +53,8 @@ public class ItemController : MonoBehaviour {
 	void getItem(){
 		HaveItem = true;
 		if (ItemLevel == 0) {
-			ItemType = Random.Range (0,ItemPrefab.Length);
+			//ItemType = Random.Range (0,ItemPrefab.Length);
+			ItemType = 2;
 		}
 		ItemLevel++;
 		// 音

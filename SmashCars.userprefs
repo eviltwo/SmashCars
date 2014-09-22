@@ -1,13 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerSelect/ViewSelectController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/WaveSpawner.cs">
     <Files>
-      <File FileName="Assets/Scripts/PlayerSelect/ViewTeamColor.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/PlayerSelect/GUITextureButton.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/PlayerSelect/PlayerSelectManager.cs" Line="34" Column="34" />
-      <File FileName="Assets/Scripts/PlayerSelect/Button_ControlChange.cs" Line="50" Column="50" />
-      <File FileName="Assets/Scripts/PlayerSelect/Button_FieldChange.cs" Line="2" Column="2" />
-      <File FileName="Assets/Scripts/PlayerSelect/ViewSelectController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Item_Wave.cs" Line="55" Column="55" />
+      <File FileName="Assets/Scripts/Item_Missile.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/WaveEffectController.cs" Line="2" Column="2" />
+      <File FileName="Assets/Scripts/WaveSpawner.cs" Line="44" Column="44" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

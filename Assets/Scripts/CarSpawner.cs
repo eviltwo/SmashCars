@@ -103,7 +103,6 @@ public class CarSpawner : MonoBehaviour {
 				CameraCount++;
 			} else {
 				if (4 == CameraValue) {
-					Debug.Log (CameraValue);
 					GameObject cam = (GameObject)Instantiate (CarCameraPrefab);
 					cam.GetComponent<CameraTargetController> ().TeamNum = -1;
 					setCameraPos (cam, team.TeamNumber);

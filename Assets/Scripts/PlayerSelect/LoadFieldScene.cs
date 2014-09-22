@@ -6,6 +6,7 @@ public class LoadFieldScene : MonoBehaviour {
 
 	void OnPushButton(){
 		string loadname = FieldName + PlayerSelectManager.Instance.FieldSelect;
+		PlayerSelectManager.Instance.savePlayerData ();
 		Application.LoadLevel (loadname);
 	}
 }

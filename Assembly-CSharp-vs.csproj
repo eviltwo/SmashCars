@@ -80,12 +80,14 @@
      <Compile Include="Assets\Scripts\ObjSpawner.cs" />
      <Compile Include="Assets\Scripts\PlayerManager.cs" />
      <Compile Include="Assets\Scripts\PlayerSelect\Button_CameraCheck.cs" />
+     <Compile Include="Assets\Scripts\PlayerSelect\Button_ControlChange.cs" />
      <Compile Include="Assets\Scripts\PlayerSelect\Button_FieldChange.cs" />
      <Compile Include="Assets\Scripts\PlayerSelect\Button_UserCheck.cs" />
      <Compile Include="Assets\Scripts\PlayerSelect\GUITextureButton.cs" />
      <Compile Include="Assets\Scripts\PlayerSelect\LoadFieldScene.cs" />
      <Compile Include="Assets\Scripts\PlayerSelect\PlayerSelectManager.cs" />
      <Compile Include="Assets\Scripts\PlayerSelect\ViewFieldName.cs" />
+     <Compile Include="Assets\Scripts\PlayerSelect\ViewSelectController.cs" />
      <Compile Include="Assets\Scripts\PlayerSelect\ViewSelectField.cs" />
      <Compile Include="Assets\Scripts\PlayerSelect\ViewTeamColor.cs" />
      <Compile Include="Assets\Scripts\PutCameraController.cs" />

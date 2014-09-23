@@ -158,6 +158,7 @@ public class ItemController : MonoBehaviour {
 				}
 			}
 		}
+
 		GameObject minbox = null;
 		float mindist = Mathf.Infinity;
 		for (int i = 0; i < find.Count; i++) {
@@ -188,7 +189,7 @@ public class ItemController : MonoBehaviour {
 				// ボックスが宙に浮いてて取れない
 				Vector3 tardir = FindItemBox.transform.position-transform.position;
 				tardir = tardir / stdir.magnitude;
-				if (tardir.y - cController.getForward().y > 0.3f) {
+				if (Mathf.Abs(FindItemBox.transform.position.y - stpos.y) > 1f) {
 					FindItemBox = null;
 				}
 			}

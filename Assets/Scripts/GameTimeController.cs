@@ -6,6 +6,8 @@ public class GameTimeController : MonoBehaviour {
 	public float SingleModeHeight = 0.8f;
 	public string OverTimeText = "サドンデス";
 	public Vector3 OverTimeScale;
+	public string GameEndText = "ESC長押し";
+	public Vector3 GameEndScale;
 
 	GameObject Text;
 	int screen = -1;
@@ -17,7 +19,10 @@ public class GameTimeController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		float GameTime = GameTimeManager.Instance.getTime ();
-		if (GameTimeManager.Instance.isTimeOver()) {
+		if (PlayerManager.Instance.isGameEnd) {
+			Text.guiText.text = GameEndText;
+			Text.transform.localScale = GameEndScale;
+		}else if (GameTimeManager.Instance.isTimeOver()) {
 			Text.guiText.text = OverTimeText;
 			Text.transform.localScale = OverTimeScale;
 		}else{

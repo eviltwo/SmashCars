@@ -92,6 +92,7 @@
      <Compile Include="Assets\Scripts\PlayerSelect\ViewSelectField.cs" />
      <Compile Include="Assets\Scripts\PlayerSelect\ViewTeamColor.cs" />
      <Compile Include="Assets\Scripts\PutCameraController.cs" />
+     <Compile Include="Assets\Scripts\RandomParticleTimer.cs" />
      <Compile Include="Assets\Scripts\ReturnController.cs" />
      <Compile Include="Assets\Scripts\Rotor.cs" />
      <Compile Include="Assets\Scripts\Rotor_Model.cs" />
@@ -100,6 +101,7 @@
      <Compile Include="Assets\Scripts\ViewFPS.cs" />
      <Compile Include="Assets\Scripts\ViewHpController.cs" />
      <Compile Include="Assets\Scripts\ViewItemController.cs" />
+     <Compile Include="Assets\Scripts\ViewItemLevel.cs" />
      <Compile Include="Assets\Scripts\ViewPlayerValueController.cs" />
      <Compile Include="Assets\Scripts\ViewRankController.cs" />
      <Compile Include="Assets\Scripts\ViewSuddendeath.cs" />

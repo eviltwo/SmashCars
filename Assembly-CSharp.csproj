@@ -81,6 +81,7 @@
      <Compile Include="Assets\Scripts\ObjSpawner.cs" />
      <Compile Include="Assets\Scripts\PlayerManager.cs" />
      <Compile Include="Assets\Scripts\PlayerSelect\Button_CameraCheck.cs" />
+     <Compile Include="Assets\Scripts\PlayerSelect\Button_ChangeScene.cs" />
      <Compile Include="Assets\Scripts\PlayerSelect\Button_ControlChange.cs" />
      <Compile Include="Assets\Scripts\PlayerSelect\Button_FieldChange.cs" />
      <Compile Include="Assets\Scripts\PlayerSelect\Button_UserCheck.cs" />
@@ -112,6 +113,7 @@
      <Compile Include="Assets\Scripts\struct\HitWall.cs" />
      <Compile Include="Assets\Scripts\struct\Team.cs" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
+     <None Include="Assets\Resources\Shader\Normal-BothSides.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

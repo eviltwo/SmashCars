@@ -275,7 +275,7 @@ public class CarController : MonoBehaviour {
 
 	// ダメージを受ける
 	public void addDamage(Damage damage){
-		if (WaitManager.Instance.IsGameStart) {
+		if (WaitManager.Instance.IsGameStart && !PlayerManager.Instance.isGameEnd) {
 			HP = Mathf.Max (0, HP - damage.Value);
 			checkDeath ();
 		}

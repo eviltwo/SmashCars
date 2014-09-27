@@ -3,7 +3,8 @@ using System.Collections;
 
 public class ReturnController : MonoBehaviour {
 
-	public float ReturnTimeMax = 5.0f;
+	public float ReturnTimeMax = 3.0f; 
+	public string ReturnSceneName = "Demo";
 
 	float returntime = 0;
 	// Update is called once per frame
@@ -15,7 +16,7 @@ public class ReturnController : MonoBehaviour {
 				if (findobj) {
 					Destroy (findobj.gameObject);
 				}
-				Application.LoadLevel ("PlayerSelect");
+				Application.LoadLevel (ReturnSceneName);
 			}
 		} else {
 			returntime = 0;
